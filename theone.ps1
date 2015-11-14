@@ -240,3 +240,24 @@ Function Save-FileDialog {
     return $null
   }
 }
+
+Function Show-Balloon{
+	param(
+		[string]$title,
+		[string]$text
+	)
+	
+	[system.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms') | Out-Null
+ 
+	$balloon = New-Object System.Windows.Forms.NotifyIcon
+	$path = Get-Process -id $pid | Select-Object -ExpandProperty Path
+	$icon = [System.Drawing.Icon]::ExtractAssociatedIcon($path)
+	$balloon.Icon = $icon
+	$balloon.BalloonTipIcon = 'Info'
+	$balloon.BalloonTipText = $text
+	$balloon.BalloonTipTitle = $title
+	$balloon.Visible = $true
+	$balloon.ShowBalloonTip(10000)
+	Start-Sleep -Seconds 5
+	$balloon.Dispose()
+}
