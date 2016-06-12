@@ -1,4 +1,4 @@
-Function Open-FileDialog {
+﻿Function Open-FileDialog {
   <#
     .Synopsis
        Forms dialog to open file.
