@@ -1,4 +1,6 @@
-﻿Function Open-FileDialog {
+﻿# Build a Better Function https://technet.microsoft.com/en-us/magazine/hh360993.aspx
+
+function Open-FileDialog {
   <#
     .Synopsis
        Forms dialog to open file.
@@ -18,7 +20,7 @@
     [string]$filter="All files (*.*)|*.*"
   )
 
- [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null     
+ [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms") | Out-Null     
 
  $objForm = New-Object System.Windows.Forms.OpenFileDialog
  $objForm.Title = "$title"
@@ -34,7 +36,7 @@
  }
 }
 
-Function Open-InputBox {
+function Open-InputBox {
   <#
     .Synopsis
        Forms dialog to input some string.
@@ -128,7 +130,7 @@ Function Open-InputBox {
   return $x
 }
 
-Function Show-MessageBox { 
+function Show-MessageBox { 
   <#
     .Synopsis
        MessageBox dialog.
@@ -200,7 +202,7 @@ Function Show-MessageBox {
   Return $Answer 
 }
 
-Function Save-FileDialog {
+function Save-FileDialog {
   <#
     .Synopsis
        Forms dialog to save file.
@@ -241,7 +243,7 @@ Function Save-FileDialog {
   }
 }
 
-Function Show-Balloon{
+function Show-Balloon{
 	param(
 		[string]$title,
 		[string]$text
@@ -260,4 +262,19 @@ Function Show-Balloon{
 	$balloon.ShowBalloonTip(10000)
 	Start-Sleep -Seconds 5
 	$balloon.Dispose()
+}
+
+function Get-InstalledSoftware(){
+  $InstalledSoftware = Get-ChildItem HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ | Get-ItemProperty
+  IF (Test-path HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\){
+      $InstalledSoftware += Get-ChildItem HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\ | Get-ItemProperty
+  }
+  IF (Test-path HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\) {
+     $InstalledSoftware += Get-ChildItem HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\ | Get-ItemProperty
+  }
+  $list = $InstalledSoftware | Where {$_.DisplayName -ne $Null -AND $_.SystemComponent -ne "1" } 
+  if($list -ne  $Null){
+    $list = $list|Select DisplayName,ParentDisplayName|Sort-Object {"$_"}
+  }
+  return $list
 }
