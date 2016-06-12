@@ -6,6 +6,8 @@
 
 * theone.js
 * theone.php
-* TheOne.ps1
-* TheOne.cs
-* TheOne.py
+* theone.ps1
+* theone.cs
+* theone.py
+* theone.sh
+* theone.bat
