@@ -288,7 +288,6 @@ function Get-Software(){
 }
 
 function Show-Help(){
-  Write-Host "Welcome to use TheOne PowerShell Common Functions" -ForegroundColor Green
   Write-Host "Open-FileDialog"
   Write-Host "Open-InputBox"
   Write-Host "Show-MessageBox"
@@ -298,3 +297,5 @@ function Show-Help(){
   Write-Host "Get-Software"
   Write-Host "Show-Help"
 }
+
+Write-Host "TheOne Loaded Successfully" -ForegroundColor Green
