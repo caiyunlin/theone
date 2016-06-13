@@ -278,3 +278,22 @@ function Get-InstalledSoftware(){
   }
   return $list
 }
+
+function Install-Software(){
+
+}
+
+function Get-Software(){
+
+}
+
+function theone(){
+  Write-Host "Welcome to use TheOne PowerShell Common Functions" -ForegroundColor Green
+  Write-Host "Open-FileDialog"
+  Write-Host "Open-InputBox"
+  Write-Host "Show-MessageBox"
+  Write-Host "Show-FileDialog"
+  Write-Host "Show-Balloon"
+  Write-Host "Install-Software"
+  Write-Host "Get-Software"
+}
