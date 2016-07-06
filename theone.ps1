@@ -462,6 +462,4 @@ function Show-Help(){
   Write-Host "Show-Help"
 }
 
-New-Alias install Install-Software
-
 Write-Host "TheOne Loaded Successfully" -ForegroundColor Green
