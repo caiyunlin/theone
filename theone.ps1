@@ -419,6 +419,32 @@ function Get-WebFile {
    }
 }
 
+function Extract-File{
+  Param(
+    [Parameter(Mandatory=$True,HelpMessage="Enter Zip FileName")][string]$ZipFileName,
+    [Parameter(Mandatory=$True,HelpMessage="Enter Destination Path")][string]$Destination
+  )
+   
+  if(test-path($ZipFileName))
+  {   
+    $shellApplication = new-object -com shell.application
+    $zipPackage = $shellApplication.NameSpace($ZipFileName)
+    if(!(test-path($destination))){
+        $d = New-Item -Path $destination -Type Directory
+        Write-Host "Creating Folder "$d.FullName
+    }
+    $destinationFolder = $shellApplication.NameSpace($destination)
+    Write-Host "Extracting "$ZipFileName" to "$destination
+
+    #CopyHere parameter definition please refer http://msdn.microsoft.com/en-us/library/bb787866(VS.85).aspx
+    #16:Respond with "Yes to All" for any dialog box that is displayed. It will overwrite the existing files
+    $destinationFolder.CopyHere($zipPackage.Items(),16)
+  }
+  else{
+    Write-Host "Can't Find $ZipFileName"
+  }
+}
+
 function Install-Software{
   #Download And Install Softwares
    
