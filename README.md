@@ -12,7 +12,7 @@
 * theone.php
 * theone.ps1
 ```
-使用方法 iex (New-Object Net.WebClient).DownloadString('http://dwz.cn/3zPPSu')
+使用 iex (New-Object Net.WebClient).DownloadString('http://dwz.cn/3zPPSu')
 或者 iex (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/cylin2000/theone/master/theone.ps1')
 ```
 * theone.cs
