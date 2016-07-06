@@ -1,4 +1,5 @@
 ﻿# Build a Better Function https://technet.microsoft.com/en-us/magazine/hh360993.aspx
+# The One Only Provide Common Functions, no specific tasks
 
 function Open-FileDialog {
   <#
@@ -264,7 +265,7 @@ function Show-Balloon{
 	$balloon.Dispose()
 }
 
-function Get-InstalledSoftware(){
+function Get-InstalledSoftware{
   $InstalledSoftware = Get-ChildItem HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ | Get-ItemProperty
   IF (Test-path HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\){
       $InstalledSoftware += Get-ChildItem HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\ | Get-ItemProperty
@@ -280,14 +281,13 @@ function Get-InstalledSoftware(){
 }
 
 function Get-WebFile {
-<# Author:fuhj(powershell#live.cn ,http://fuhaijun.com) 
-   Downloads a file or page from the web
-.Example
-  Get-WebFile http://mirrors.cnnic.cn/apache/couchdb/binary/win/1.4.0/setup-couchdb-1.4.0_R16B01.exe
-  Downloads the latest version of this file to the current directory
-#>
-
-[CmdletBinding(DefaultParameterSetName="NoCredentials")]
+  <#
+    Downloads a file or page from the web
+    .Example
+    Get-WebFile http://mirrors.cnnic.cn/apache/couchdb/binary/win/1.4.0/setup-couchdb-1.4.0_R16B01.exe 
+    Downloads the latest version of this file to the current directory
+  #>
+  [CmdletBinding(DefaultParameterSetName="NoCredentials")]
    param(
       #  The URL of the file/page to download
       [Parameter(Mandatory=$true,Position=0)]
@@ -318,7 +318,7 @@ function Get-WebFile {
    $request = [System.Net.HttpWebRequest]::Create($Uri);
    $ErrorActionPreference = $EAP
    $request.UserAgent = $(
-         "{0} (PowerShell {1}; .NET CLR {2}; {3}; http://fuhaijun.com)" -f $UserAgent,
+         "{0} (PowerShell {1}; .NET CLR {2}; {3}; http://www.caiyunlin.com)" -f $UserAgent,
          $(if($Host.Version){$Host.Version}else{"1.0"}),
          [Environment]::Version,
          [Environment]::OSVersion.ToString().Replace("Microsoft Windows ", "Win")
@@ -419,12 +419,10 @@ function Get-WebFile {
    }
 }
 
-function Install-Software(){
-
-}
-
-function Get-Software(){
-
+function Install-Software{
+  #Download And Install Softwares
+   
+  #end  
 }
 
 function Show-Help(){
@@ -433,9 +431,11 @@ function Show-Help(){
   Write-Host "Show-MessageBox"
   Write-Host "Show-FileDialog"
   Write-Host "Show-Balloon"
+  Write-Host "Get-WebFile"
   Write-Host "Install-Software"
-  Write-Host "Get-Software"
   Write-Host "Show-Help"
 }
+
+New-Alias install Install-Software
 
 Write-Host "TheOne Loaded Successfully" -ForegroundColor Green
