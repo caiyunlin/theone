@@ -1,4 +1,4 @@
-﻿
+
 namespace TheOne
 {
     public sealed class TheOneHelper{

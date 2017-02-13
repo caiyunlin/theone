@@ -1,4 +1,4 @@
-﻿# Build a Better Function https://technet.microsoft.com/en-us/magazine/hh360993.aspx
+# Build a Better Function https://technet.microsoft.com/en-us/magazine/hh360993.aspx
 # The One Only Provide Common Functions, no specific tasks
 
 function Open-FileDialog {
