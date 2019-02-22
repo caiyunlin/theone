@@ -1,7 +1,15 @@
 
-namespace TheOne
+namespace caiyunlin.com
 {
-    public sealed class Helper{
+    public sealed class TheOne{
+
+        /// <summary>
+        /// 生成MD5
+        /// </summary>
+        public string MD5(string input){
+            return null;
+        }
+
         /// <summary> 
         /// 在C#中指定修订号为*的时候，修订号则是一个时间戳，我们可以从其得到编译日期
         /// 生成和修订版本号必须是自动生成的
